@@ -7,5 +7,7 @@ defmodule ExgamesServerWeb.Router do
 
   scope "/api", ExgamesServerWeb do
     pipe_through :api
+
+    resources "/users", UserController, only: [:create]
   end
 end
