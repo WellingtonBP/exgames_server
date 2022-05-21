@@ -20,7 +20,8 @@ defmodule ExgamesServer.User do
     user
     |> cast(attrs, [:name, :email, :avatar_url, :birthday, :birthday, :password])
     |> validate_required([:name, :email, :password])
-    |> unique_constraint([:name, :email])
+    |> unique_constraint(:name)
+    |> unique_constraint(:email)
     |> validate_format(:email, @email_regex, message: "invalid email format")
     |> validate_length(:password, min: 8, max: 32)
     |> hash_password()
