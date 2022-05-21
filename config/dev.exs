@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :exgames_server, ExgamesServer.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "pgdbuser",
+  password: "pgdbpass",
   hostname: "localhost",
   database: "exgames_server_dev",
   show_sensitive_data_on_connection_error: true,
