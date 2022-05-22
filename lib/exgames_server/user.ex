@@ -30,8 +30,15 @@ defmodule ExgamesServer.User do
   defp hash_password(changeset) do
     changeset
     |> get_change(:password)
-    |> then(&put_change(changeset, :hashed_password, Bcrypt.hash_pwd_salt(&1)))
+    |> then(&put_hash(changeset, &1))
   end
+
+  defp put_hash(changeset, password) when is_binary(password) do
+    changeset
+    |> put_change(:hashed_password, Bcrypt.hash_pwd_salt(password))
+  end
+
+  defp put_hash(changeset, _password), do: changeset
 
   def translate_errors(%Ecto.Changeset{valid?: false, errors: errors}) do
     errors
