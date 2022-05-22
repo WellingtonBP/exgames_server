@@ -1,5 +1,5 @@
 defmodule ExgamesServerWeb.UserControllerTest do
-  use ExgamesServerWeb.ConnCase
+  use ExgamesServerWeb.ConnCase, async: true
 
   describe "create/2" do
     setup %{conn: conn} do

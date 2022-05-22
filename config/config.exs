@@ -13,6 +13,15 @@ config :exgames_server,
 # Configures upload path
 config :exgames_server, upload_path: "#{File.cwd!()}/priv/static/uploads"
 
+# Configures guardian jwt secret key and pipeline
+config :exgames_server, ExgamesServerWeb.Auth.Guardian,
+  issuer: "exgames_server",
+  secret_key: System.get_env("JWT_SECRET") || "unsafe_jwt_secret"
+
+config :exgames_server, ExgamesServerWeb.Auth.Pipeline,
+  module: ExgamesServerWeb.Auth.Guardian,
+  error_handler: ExgamesServerWeb.Auth.ErrorHandler
+
 # Configures the endpoint
 config :exgames_server, ExgamesServerWeb.Endpoint,
   url: [host: "localhost"],
