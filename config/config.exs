@@ -10,6 +10,9 @@ import Config
 config :exgames_server,
   ecto_repos: [ExgamesServer.Repo]
 
+# Configures upload path
+config :exgames_server, upload_path: "#{File.cwd!()}/priv/static/uploads"
+
 # Configures the endpoint
 config :exgames_server, ExgamesServerWeb.Endpoint,
   url: [host: "localhost"],
