@@ -5,6 +5,10 @@ defmodule ExgamesServerWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authenticated do
+    plug ExgamesServerWeb.Auth.Pipeline
+  end
+
   scope "/api", ExgamesServerWeb do
     pipe_through :api
 
