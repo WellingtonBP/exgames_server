@@ -2,6 +2,8 @@ defmodule ExgamesServer.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias ExgamesServer.Game
+
   @email_regex ~r/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
   @primary_key {:id, Ecto.UUID, autogenerate: true}
 
@@ -12,6 +14,10 @@ defmodule ExgamesServer.User do
     field :birthday, :date
     field :hashed_password, :string
     field :password, :string, virtual: true
+
+    has_many :games_created, Game, foreign_key: :creator
+    has_many :games_invited, Game, foreign_key: :opponent
+    has_many :games_win, Game, foreign_key: :winner
 
     timestamps()
   end
