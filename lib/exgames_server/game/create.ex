@@ -1,5 +1,4 @@
 defmodule ExgamesServer.Game.Create do
-
   alias ExgamesServer.{Repo, Game}
 
   def call(creator, params) do

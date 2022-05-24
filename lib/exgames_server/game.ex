@@ -22,7 +22,7 @@ defmodule ExgamesServer.Game do
   end
 
   defp check_opponent(changeset) do
-    creator = 
+    creator =
       changeset
       |> get_creator()
 
@@ -30,7 +30,8 @@ defmodule ExgamesServer.Game do
     |> validate_change(:opponent, fn :opponent, opponent ->
       case opponent do
         ^creator ->
-          [opponent: "cannot be equal creator"]
+          [opponent: "can't be equal creator"]
+
         _ ->
           []
       end
@@ -41,8 +42,9 @@ defmodule ExgamesServer.Game do
     case get_field(changeset, :creator) do
       nil ->
         get_change(changeset, :creator)
-      creator -> 
+
+      creator ->
         creator
     end
-  end 
+  end
 end
